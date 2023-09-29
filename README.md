@@ -8,10 +8,9 @@ This is a web app for managing stock portfolios, making transactions, and checki
 - View the history of all your transactions
 
 # Installation
-Clone the project repository:
-Install the required dependencies:
+Install the required dependencies
 - pip install -r requirements.txt
-Start the Flask development server:
+Start the Flask development server
 - flask run
 
 
