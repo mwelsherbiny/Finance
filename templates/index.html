@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <h2>Cash: {{ cash | usd }}</h2>
+    <h2>Total: {{ total | usd }}</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Share Price</th>
+                <th>Total</th>
+                <th>Gain/Loss Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                {% if stock["shares"] > 0 %}
+                    <td>{{ stock["symbol"] }}</td>
+                    <td>{{ stock["shares"] }}</td>
+                    <td>{{ stock["curr_price"] | usd }}</td>
+                    <td>{{ stock["total_stock"] | usd }}</td>
+                    {% if stock["gain_loss_percent"] > 0 %}
+                            <td  class="text-success">{{ stock["gain_loss_percent"] }}%</td>
+                    {% elif stock["gain_loss_percent"] < 0 %}
+                            <td  class="text-danger">{{ stock["gain_loss_percent"] }}%</td>
+                    {% else %}
+                            <td>{{ stock["gain_loss_percent"] }}%</td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

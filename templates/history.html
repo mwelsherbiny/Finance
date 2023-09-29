@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <form method="post" class="mb-3">
+        <button class="btn btn-dark btn-sm" type="submit">Order by</button>
+        <select name="order">
+            <option disabled selected>Select</option>
+            <option value="most-to-least-recent">Most to least recent</option>
+            <option value="least-to-most-recent">Least to most recent</option>
+            <option value="most-to-least-total">Highest to lowest total</option>
+            <option value="least-to-most-total">Lowest to highest total</option>
+        </select>
+    </form>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Transaction</th>
+                <th>Share Price</th>
+                <th>Total</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction["stock"] }}</td>
+                    {% if transaction["shares"] > 0 %}
+                        <td>Bought {{ transaction["shares"] }} shares</td>
+                    {% else %}
+                        <td>Sold {{ -transaction["shares"] }} shares</td>
+                    {% endif %}
+                    <td>{{ transaction["price"] | usd }}</td>
+                    <td>{{ transaction["total"] | usd}}</td>
+                    <td>{{ transaction["date"]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
