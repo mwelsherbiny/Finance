@@ -9,11 +9,11 @@ This is a web app for managing stock portfolios, making transactions, and checki
 
 # Installation
 Install the required dependencies
-```python
+```
 pip install -r requirements.txt
 ```
 Start the Flask development server
-```python
+```
 flask run
 ```
 
